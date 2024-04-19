@@ -81,13 +81,17 @@ def users_mail(self, state_change, comp=None):
         body=body,
     )
 
-    api.portal.send_email(
-        recipient=";".join(bosses),
-        #recipient = "carlos.acosta@calificados.cfe.mx", #DEBUG
-        sender="noreply@plone.org",
-        subject="Solicitud de gastos supervisada registrada",
-        body=body2,
-    )
+    try:
+        api.portal.send_email(
+            recipient=";".join(bosses),
+            #recipient = "carlos.acosta@calificados.cfe.mx", #DEBUG
+            sender="noreply@plone.org",
+            subject="Solicitud de gastos supervisada registrada",
+            body=body2,
+        )
+    except:
+        pass
+
 
 def generate(viaje, n_grupo=1):
     if not viaje.anti_desc:
